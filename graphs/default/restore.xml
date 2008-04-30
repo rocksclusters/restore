@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="no"?>
+
+<graph>
+<description>
+</description>
+
+<changelog>
+</changelog>
+
+
+<!--
+	restore-*-files nodes need to be after install, as install creates the
+	/etc/auto.home file and restore-system-files updates /etc/auto.home
+-->
+<order head="install">
+	<tail>restore-node</tail>
+</order>
+
+<order head="restore-node">
+	<tail>restore-system-files</tail>
+</order>
+
+<order head="restore-system-files">
+	<tail>restore-user-files</tail>
+</order>
+
+<order head="restore-manual-partitioning">
+	<tail>screen-partitioning</tail>
+</order>
+
+
+<edge from="server">
+	<to>restore-node</to>
+	<to>restore-system-files</to>
+	<to>restore-user-files</to>
+	<to>restore-manual-partitioning</to>
+</edge>
+
+
+</graph>
+

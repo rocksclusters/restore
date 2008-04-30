@@ -1,0 +1,97 @@
+<?xml version="1.0" standalone="no"?>
+<kickstart>
+
+<description>
+</description>
+
+<changelog>
+</changelog>
+
+
+<package>restore-system-files</package>
+
+
+<!--
+	this first section merges the user info files from the newly 
+	installed system with the files found in the restore roll
+-->
+
+<post arg="--interpreter /opt/rocks/bin/python" >
+import string
+import os
+import sys
+
+def merge(list, filename, separator):
+	file = open(filename, 'r')
+
+	line = file.readline()
+	while line:
+		fields = string.split(line, separator)
+
+		if not list.has_key(fields[0]):
+			list[fields[0]] = fields
+
+		line = file.readline()
+
+	file.close()
+
+
+for (filename, sep) in [ ('/etc/passwd', ':'), \
+		('/etc/shadow', ':'), ('/etc/gshadow', ':'), \
+		('/etc/group', ':'), ('/etc/exports', None), \
+		('/etc/auto.home', None) ]:
+
+	try:
+		newlist = {}
+
+		#
+		# read in the new file which was laid down during this
+		# installation
+		#
+		merge(newlist, filename, sep)
+
+		#
+		# find the user added fields and merge them in
+		#
+		merge(newlist, '/upgrade' + filename, sep)
+
+		#
+		# create a new, merged configuration file
+		#
+		if sep == None:
+			sep = '\t'
+
+		file = open(filename, 'w')
+		for key in newlist.keys():
+			file.write("%s" % (string.join(newlist[key], sep)))
+
+			if sep == '\t':
+				file.write("\n")
+
+		file.close()
+
+	except:
+		pass
+</post>
+
+
+<!--
+	here is an example of appending a file from the restore roll with the
+	file from the new installation.
+-->
+
+<post>
+
+<file name="/etc/motd" mode="append">
+
+-----------------------------
+
+</file>
+
+<file name="/etc/motd" mode="append" expr="cat /upgrade/etc/motd"/>
+
+</post>
+
+
+</kickstart>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="no"?>
+<kickstart>
+
+<description>
+</description>
+
+<changelog>
+</changelog>
+
+<!--
+	make sure the user always manually partitions when the restore roll
+	is supplied
+-->
+<var name="Server_Partitioning" val="manual"/>
+
+</kickstart>
+
