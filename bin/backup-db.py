@@ -1,6 +1,6 @@
 #!/opt/rocks/bin/python
 #
-# $Id: backup-db.py,v 1.19 2008/03/06 23:41:56 mjk Exp $
+# $Id: backup-db.py,v 1.20 2008/05/22 21:02:07 bruno Exp $
 #
 # @Copyright@
 # 
@@ -56,6 +56,12 @@
 # @Copyright@
 #
 # $Log: backup-db.py,v $
+# Revision 1.20  2008/05/22 21:02:07  bruno
+# rocks-dist is dead!
+#
+# moved default location of distro from /export/home/install to
+# /export/rocks/install
+#
 # Revision 1.19  2008/03/06 23:41:56  mjk
 # copyright storm on
 #
@@ -174,7 +180,10 @@ def getSiteProfiles():
 	# get all the files under site-profiles
 	#
 	print '<post>'
-	tree = rocks.file.Tree('/export/home/install/site-profiles/')
+	cmd = '/opt/rocks/bin/rocks report distro'
+	for line in os.popen(cmd).readlines():
+		distrodir = line[:-1]
+	tree = rocks.file.Tree('%s/site-profiles/' % (distrodir))
 
 	for dir in tree.getDirs():
 		for file in tree.getFiles(dir):
