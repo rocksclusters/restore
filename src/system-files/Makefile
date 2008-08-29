@@ -1,10 +1,13 @@
 #
-# $Id: Makefile,v 1.1 2006/07/25 16:32:15 bruno Exp $
+# $Id: Makefile,v 1.2 2008/08/29 19:39:20 mjk Exp $
 #
-# @COPYRIGHT@
-# @COPYRIGHT@
+# @Copyright@
+# @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.2  2008/08/29 19:39:20  mjk
+# use new dev env
+#
 # Revision 1.1  2006/07/25 16:32:15  bruno
 # retooled the restore roll to make a separation between system files and
 # user files.
@@ -15,7 +18,6 @@
 #
 
 REDHAT.ROOT     = $(PWD)/../../
-ROCKSROOT       = ../../../../..
 
 -include $(ROCKSROOT)/etc/Rules.mk
 include Rules.mk

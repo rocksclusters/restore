@@ -1,14 +1,21 @@
 <?xml version="1.0" standalone="no"?>
 <kickstart>
 
-<description>
-</description>
+	<description>
+	</description>
 
-<changelog>
-</changelog>
+	<copyright>
+	</copyright>
+
+	<changelog>
+	$Log: restore-system-files.xml,v $
+	Revision 1.2  2008/08/29 19:39:20  mjk
+	use new dev env
+	
+	</changelog>
 
 
-<package>restore-system-files</package>
+	<package>restore-system-files</package>
 
 
 <!--

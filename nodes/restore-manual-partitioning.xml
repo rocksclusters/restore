@@ -1,17 +1,23 @@
 <?xml version="1.0" standalone="no"?>
 <kickstart>
 
-<description>
-</description>
+	<description>
+	Make sure the user always manually paritions when the restore roll
+	is supplied.
+	</description>
 
-<changelog>
-</changelog>
+	<copyright>
+	</copyright>
 
-<!--
-	make sure the user always manually partitions when the restore roll
-	is supplied
--->
-<var name="Server_Partitioning" val="manual"/>
+	<changelog>
+	$Log: restore-manual-partitioning.xml,v $
+	Revision 1.2  2008/08/29 19:39:20  mjk
+	use new dev env
+	
+	</changelog>
+
+
+	<var name="Server_Partitioning" val="manual"/>
 
 </kickstart>
 
