@@ -1,6 +1,6 @@
 #!/opt/rocks/bin/python
 #
-# $Id: build-user-files-node.py,v 1.14 2008/03/06 23:41:56 mjk Exp $
+# $Id: build-user-files-node.py,v 1.15 2008/09/16 19:39:48 bruno Exp $
 #
 # @Copyright@
 # 
@@ -56,6 +56,14 @@
 # @Copyright@
 #
 # $Log: build-user-files-node.py,v $
+# Revision 1.15  2008/09/16 19:39:48  bruno
+# - make a 'restore-contrib' package that contains all the RPMS from
+#   /export/rocks/install/contrib
+#
+# - save the /var/named/*local files
+#
+# - save the node's ssh machine keys
+#
 # Revision 1.14  2008/03/06 23:41:56  mjk
 # copyright storm on
 #
@@ -289,7 +297,7 @@ class App(rocks.app.Application):
 		# rocks control
 		#
 		print '<post>'
-		print '/opt/rocks/sbin/insert-ethers --update'
+		print '/opt/rocks/bin/rocks sync config'
 		print '</post>'
 		print ''
 

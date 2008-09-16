@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.14 2008/08/29 19:39:20 mjk Exp $
+# $Id: Makefile,v 1.15 2008/09/16 19:39:48 bruno Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,14 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.15  2008/09/16 19:39:48  bruno
+# - make a 'restore-contrib' package that contains all the RPMS from
+#   /export/rocks/install/contrib
+#
+# - save the /var/named/*local files
+#
+# - save the node's ssh machine keys
+#
 # Revision 1.14  2008/08/29 19:39:20  mjk
 # use new dev env
 #
@@ -125,7 +133,10 @@ pretar::
 			> nodes/restore-user-files.xml
 	/opt/rocks/bin/rocks list host sitexml localhost | \
 		grep -v Password > nodes/site.xml
-
+	(cd RPMS/$(ARCH) ; \
+		/opt/rocks/bin/rocks create package $(CONTRIB_PKG_DIR) \
+			restore-contrib version=$(CONTRIB_PKG_VER) ; \
+	)
 roll::
 	ln -s $(ROLLNAME)*.iso restore.iso
 

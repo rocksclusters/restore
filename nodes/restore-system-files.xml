@@ -9,6 +9,14 @@
 
 	<changelog>
 	$Log: restore-system-files.xml,v $
+	Revision 1.3  2008/09/16 19:39:48  bruno
+	- make a 'restore-contrib' package that contains all the RPMS from
+	  /export/rocks/install/contrib
+	
+	- save the /var/named/*local files
+	
+	- save the node's ssh machine keys
+	
 	Revision 1.2  2008/08/29 19:39:20  mjk
 	use new dev env
 	
@@ -16,6 +24,7 @@
 
 
 	<package>restore-system-files</package>
+	<package>restore-contrib</package>
 
 
 <!--
