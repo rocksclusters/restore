@@ -1,12 +1,12 @@
 #!/opt/rocks/bin/python
 #
-# $Id: build-user-files-node.py,v 1.15 2008/09/16 19:39:48 bruno Exp $
+# $Id: build-user-files-node.py,v 1.16 2008/10/18 00:56:13 mjk Exp $
 #
 # @Copyright@
 # 
 # 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		            version 5.0 (V)
+# 		           version 5.1  (VI)
 # 
 # Copyright (c) 2000 - 2008 The Regents of the University of California.
 # All rights reserved.	
@@ -56,6 +56,9 @@
 # @Copyright@
 #
 # $Log: build-user-files-node.py,v $
+# Revision 1.16  2008/10/18 00:56:13  mjk
+# copyright 5.1
+#
 # Revision 1.15  2008/09/16 19:39:48  bruno
 # - make a 'restore-contrib' package that contains all the RPMS from
 #   /export/rocks/install/contrib
