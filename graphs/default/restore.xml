@@ -20,6 +20,10 @@
 	<tail>restore-system-files</tail>
 </order>
 
+<order head="restore-node">
+	<tail>networking-server</tail>
+</order>
+
 <order head="restore-system-files">
 	<tail>restore-user-files</tail>
 </order>
