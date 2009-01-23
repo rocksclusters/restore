@@ -28,16 +28,11 @@
 	<tail>restore-user-files</tail>
 </order>
 
-<order head="restore-manual-partitioning">
-	<tail>screen-partitioning</tail>
-</order>
-
 
 <edge from="server">
 	<to>restore-node</to>
 	<to>restore-system-files</to>
 	<to>restore-user-files</to>
-	<to>restore-manual-partitioning</to>
 </edge>
 
 
