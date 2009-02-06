@@ -3,6 +3,7 @@ NAME		= roll-$(shell uname -n)-restore
 VERSION		= $(shell date +%Y.%m.%d)
 RELEASE		= 0
 COLOR   	= orchid
+ISOSIZE		= 0
 
 REDHAT.ROOT 	= $(PWD)
 
