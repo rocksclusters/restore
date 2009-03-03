@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.16 2008/10/18 00:56:13 mjk Exp $
+# $Id: Makefile,v 1.17 2009/03/03 23:06:18 mjk Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.17  2009/03/03 23:06:18  mjk
+# switch to rocks report host attr
+#
 # Revision 1.16  2008/10/18 00:56:13  mjk
 # copyright 5.1
 #
@@ -134,8 +137,8 @@ pretar::
 	./bin/build-user-files-node.py \
 		--files="$(FILES)" --scripts="$(SCRIPTS)" \
 			> nodes/restore-user-files.xml
-	/opt/rocks/bin/rocks list host sitexml localhost | \
-		grep -v Password > nodes/site.xml
+	/opt/rocks/bin/rocks report host attr localhost | \
+		grep -v Password > nodes/site.attrs
 	(cd RPMS/$(ARCH) ; \
 		/opt/rocks/bin/rocks create package $(CONTRIB_PKG_DIR) \
 			restore-contrib version=$(CONTRIB_PKG_VER) ; \
