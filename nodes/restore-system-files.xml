@@ -12,6 +12,9 @@
 
 	<changelog>
 	$Log: restore-system-files.xml,v $
+	Revision 1.6  2009/05/26 23:04:42  bruno
+	mo' bugs
+	
 	Revision 1.5  2009/05/01 19:07:21  mjk
 	chimi con queso
 	
@@ -41,7 +44,7 @@
 	installed system with the files found in the restore roll
 -->
 
-<post arg="--interpreter /opt/rocks/bin/python" >
+<post interpreter="/opt/rocks/bin/python">
 import string
 import os
 import sys
