@@ -1,6 +1,6 @@
 #!/opt/rocks/bin/python
 #
-# $Id: backup-db.py,v 1.22 2009/05/01 19:07:21 mjk Exp $
+# $Id: backup-db.py,v 1.23 2009/06/16 23:29:54 bruno Exp $
 #
 # @Copyright@
 # 
@@ -56,6 +56,9 @@
 # @Copyright@
 #
 # $Log: backup-db.py,v $
+# Revision 1.23  2009/06/16 23:29:54  bruno
+# read the permissions of the files and apply them in the file tag
+#
 # Revision 1.22  2009/05/01 19:07:21  mjk
 # chimi con queso
 #
@@ -137,6 +140,7 @@
 #
 import xml.sax.saxutils
 import os
+import stat
 import rocks.file
 
 def writeFile(input_filename, output_filename, perms='', owner=''):
@@ -198,9 +202,18 @@ def getSiteProfiles():
 			#
 			if file.getName() == 'skeleton.xml':
 				continue
+			#
+			# get the permissions of the file
+			#
+			filename = file.getFullName() 
 
-			writeFile(file.getFullName(), file.getFullName(),
-				'0400', 'root.apache')
+			p = os.stat(filename)[stat.ST_MODE]
+			perms = '%o' % (int(stat.S_IMODE(p)))
+			userid = '%s' % (os.stat(filename)[stat.ST_UID])
+			groupid = '%s' % (os.stat(filename)[stat.ST_GID])
+
+			writeFile(filename, filename, perms,
+				'%s.%s' % (userid, groupid))
 
 	print '</post>'
 	return
@@ -234,9 +247,16 @@ print '\n'
 
 for file in os.listdir('/root/.ssh'):
 	filename = '/root/.ssh/' + file
-	writeFile(filename, filename, '0400')
 
-print 'chmod a+r /root/.ssh/*pub'
+	#
+	# get the permissions of the file
+	#
+	p = os.stat(filename)[stat.ST_MODE]
+	perms = '%o' % (int(stat.S_IMODE(p)))
+	userid = '%s' % (os.stat(filename)[stat.ST_UID])
+	groupid = '%s' % (os.stat(filename)[stat.ST_GID])
+
+	writeFile(filename, filename, perms, '%s.%s' % (userid, groupid))
 
 print '</post>'
 
