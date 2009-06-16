@@ -1,5 +1,5 @@
 #
-# $Id: Makefile,v 1.18 2009/05/01 19:07:21 mjk Exp $
+# $Id: Makefile,v 1.19 2009/06/16 22:26:42 bruno Exp $
 #
 # @Copyright@
 # 
@@ -55,6 +55,9 @@
 # @Copyright@
 #
 # $Log: Makefile,v $
+# Revision 1.19  2009/06/16 22:26:42  bruno
+# ensure the user must manually partition a node when using the restore roll
+#
 # Revision 1.18  2009/05/01 19:07:21  mjk
 # chimi con queso
 #
@@ -141,7 +144,9 @@ pretar::
 		--files="$(FILES)" --scripts="$(SCRIPTS)" \
 			> nodes/restore-user-files.xml
 	/opt/rocks/bin/rocks report host attr localhost | \
-		grep -v Password > nodes/site.attrs
+		grep -v Password | grep -v Server_Partitioning \
+		> nodes/site.attrs
+	echo "Server_Partitioning:manual" >> nodes/site.attrs
 	(cd RPMS/$(ARCH) ; \
 		/opt/rocks/bin/rocks create package $(CONTRIB_PKG_DIR) \
 			restore-contrib version=$(CONTRIB_PKG_VER) ; \
@@ -156,5 +161,6 @@ clean::
 	rm -f *spec.mk
 	rm -f nodes/restore-node.xml
 	rm -f nodes/restore-user-files.xml
-	rm -f nodes/site.xml
+	rm -f nodes/site.attrs
+	rm -f _os _arch
 
