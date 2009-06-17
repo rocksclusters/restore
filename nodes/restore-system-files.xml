@@ -12,6 +12,9 @@
 
 	<changelog>
 	$Log: restore-system-files.xml,v $
+	Revision 1.7  2009/06/17 18:51:16  bruno
+	do one final sync after all the rocksconfig.d scripts have run
+	
 	Revision 1.6  2009/05/26 23:04:42  bruno
 	mo' bugs
 	
@@ -117,6 +120,20 @@ for (filename, sep) in [ ('/etc/passwd', ':'), \
 </file>
 
 <file name="/etc/motd" mode="append" expr="cat /upgrade/etc/motd"/>
+
+<file name="/etc/rc.d/rocksconfig.d/post-98-sync-config" perms="0755">
+#!/bin/bash
+
+#
+# the restore roll provides this file. it is run after all the other
+# rocksconfig.d files have run in order to do one final 'sync' of the
+# configuration
+#
+
+/opt/rocks/bin/rocks sync config
+
+rm -f /etc/rc.d/rocksconfig.d/post-98-sync-config
+</file>
 
 </post>
 
