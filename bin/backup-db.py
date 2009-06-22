@@ -1,6 +1,6 @@
 #!/opt/rocks/bin/python
 #
-# $Id: backup-db.py,v 1.23 2009/06/16 23:29:54 bruno Exp $
+# $Id: backup-db.py,v 1.24 2009/06/22 18:21:22 bruno Exp $
 #
 # @Copyright@
 # 
@@ -56,6 +56,9 @@
 # @Copyright@
 #
 # $Log: backup-db.py,v $
+# Revision 1.24  2009/06/22 18:21:22  bruno
+# encapsulate all 'rocks dump' commands in CDATA
+#
 # Revision 1.23  2009/06/16 23:29:54  bruno
 # read the permissions of the files and apply them in the file tag
 #
@@ -240,8 +243,10 @@ print '</pre>\n'
 
 print '<post>'
 
+print '<![CDATA['
 for line in os.popen('/opt/rocks/bin/rocks dump').readlines():
 	print "%s" % (line[:-1])
+print ']]>'
 
 print '\n'
 
