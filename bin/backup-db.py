@@ -1,14 +1,14 @@
 #!/opt/rocks/bin/python
 #
-# $Id: backup-db.py,v 1.24 2009/06/22 18:21:22 bruno Exp $
+# $Id: backup-db.py,v 1.25 2010/09/07 23:53:24 bruno Exp $
 #
 # @Copyright@
 # 
 # 				Rocks(r)
 # 		         www.rocksclusters.org
-# 		       version 5.2 (Chimichanga)
+# 		         version 5.4 (Maverick)
 # 
-# Copyright (c) 2000 - 2009 The Regents of the University of California.
+# Copyright (c) 2000 - 2010 The Regents of the University of California.
 # All rights reserved.	
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -56,6 +56,9 @@
 # @Copyright@
 #
 # $Log: backup-db.py,v $
+# Revision 1.25  2010/09/07 23:53:24  bruno
+# star power for gb
+#
 # Revision 1.24  2009/06/22 18:21:22  bruno
 # encapsulate all 'rocks dump' commands in CDATA
 #
