@@ -151,6 +151,8 @@ import sys
 import stat
 import string
 import rocks.app
+import time
+
 
 class App(rocks.app.Application):
 	def __init__(self, argv):
@@ -201,11 +203,13 @@ class App(rocks.app.Application):
 			return
 
 		#
-		# get the file permissions
+		# get file metadata
 		#
-		perms = os.stat(filename)[stat.ST_MODE]
-		userid = '%s' % (os.stat(filename)[stat.ST_UID])
-		groupid = '%s' % (os.stat(filename)[stat.ST_GID])
+		filestat = os.stat(filename)
+		perms = filestat[stat.ST_MODE]
+		userid = '%s' % (filestat[stat.ST_UID])
+		groupid = '%s' % (filestat[stat.ST_GID])
+		mtime = filestat[stat.ST_MTIME]
 
 		str = '<file name="%s.uuencode" ' % (filename)
 		str += 'perms="%o" ' % (int(stat.S_IMODE(perms)))
@@ -232,6 +236,12 @@ class App(rocks.app.Application):
 			% (filename, filename)
 		str += '/>'
 		print str
+
+		#
+		# set the original modification time
+		#
+		mtimestr = time.strftime('%Y%m%d%H%M.%S', time.localtime(mtime))
+		print 'touch -t %s %s' % (mtimestr, filename)
 
 		#
 		# delete the uuencoded file
