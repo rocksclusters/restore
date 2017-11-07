@@ -8,3 +8,4 @@ RELEASE	= 1
 FILES		= /etc/passwd /etc/shadow /etc/gshadow /etc/group \
 		  /etc/exports /etc/auto.home /etc/motd
 
+RPM.FILES =	/upgrade/*
