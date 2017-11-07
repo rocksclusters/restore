@@ -204,7 +204,10 @@ class App(rocks.app.Application):
 		#
 		# get file metadata
 		#
-		filestat = os.stat(filename)
+		try:
+			filestat = os.stat(filename)
+		except:
+			return
 		perms = filestat[stat.ST_MODE]
 		userid = '%s' % (filestat[stat.ST_UID])
 		groupid = '%s' % (filestat[stat.ST_GID])
@@ -254,7 +257,10 @@ class App(rocks.app.Application):
 		if os.path.isdir(filename):
 			return
 		
-		file = open(filename, 'r')
+		try:
+			file = open(filename, 'r')
+		except:
+			return
 
 		line = file.readline()
 		if line.startswith("#!"):
